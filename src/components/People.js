@@ -1,28 +1,66 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 
 class People extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props.listPeople;
+    this.state = {
+      item: null
+    };
   }
-
-
-
 
 
 
   render() {
     return (
       <div>
-        <ul className="menu">
-          {this.state.people.map(item => {
-            return (
-              <div>
-                <li style={{ borderStyle: 'solid', borderColor: '#336283', padding: '5px', paddingLeft: '15px', paddingRight: '15px' }}>{item.name}</li>
+        {this.props.listPeople.people.length > 0 ? (
+          <div>
+            <div>
+              <ul className="menu">
+                {this.props.listPeople.people.map(item => (
+                  <div>
+                    <button
+                      value={item.name}
+                      className='button'
+                      style={{
+                        paddingLeft: '20px',
+                        paddingRight: '20px'
+                      }}
+                      onClick={() => this.setState({ item, showing: true })
+                      }
+                    >{item.name.split(' ')[0]}</button>
+
+                  </div>
+                )
+                )}
+              </ul>
+            </div>
+
+            {this.state.item && (
+              <div id='details'>
+                <div class="card">
+                  <div class="card-divider">Full Name:
+              {this.state.item.name}
+                  </div>
+                  <div class="card-section">
+                    <h4>Hometown:{this.state.item.town}</h4>
+                    <h4>Favorite Coding Language: {this.state.item.favorite}</h4>
+                    <p>{this.state.item.extra}</p>
+                  </div>
+                </div>
               </div>
-            )
-          })}
-        </ul>
+            )}
+          </div>)
+          :
+          (
+            <div><h3>There are currently no people in here... <Link to='/add'>Add Some</Link></h3></div>
+
+          )
+        }
+
+
       </div>
     )
   }
