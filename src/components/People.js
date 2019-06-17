@@ -55,7 +55,7 @@ class People extends React.Component {
           </div>)
           :
           (
-            <div><h3>There are currently no people in here... <Link to='/add'>Add Some</Link></h3></div>
+            <div><h3>There are currently no people in here... <Link to='/add' onClick={() => this.props.changePage('add')}>Add Some</Link></h3></div>
 
           )
         }

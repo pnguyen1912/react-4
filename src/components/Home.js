@@ -10,7 +10,7 @@ class Home extends React.Component {
   unique = (val) => {
     let newAr = []
     val.map(item => newAr.push(item.favorite))
-    var unique = newAr.filter(function (item, i, ar) { return ar.indexOf(item) === i; })
+    var unique = newAr.filter((item, i, ar) => ar.indexOf(item) === i)
     return unique
   }
 
