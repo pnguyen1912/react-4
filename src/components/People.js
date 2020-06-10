@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import axios from 'axios'
 
 class People extends React.Component {
   constructor(props) {
@@ -8,6 +8,12 @@ class People extends React.Component {
     this.state = {
       item: null
     };
+  }
+
+  componentDidMount() {
+    axios.get('http://dummy.restapiexample.com/api/v1/employees')
+      .then(result => console.log(result))
+      .catch(err => console.log(err))
   }
 
 
